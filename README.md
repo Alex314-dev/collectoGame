@@ -1,92 +1,87 @@
-# CollectoGame
+# A Multi-threaded Server/Client For Collecto
 
-M2 Project
+This project revolves around the board game Collecto and a networked approach to it with Java Socket programming. The project can be understood by its three main components. The first one being the game logic, the second one being the multithreaded server, and the last one being the multithreaded client. The project also contains strategies for the AIs and players for making the moves.
 
-## Getting started
+In this README file we will explain how you can play around with these components. To play a game you should also know the rules of Collecto, which can be read here (https://canvas.utwente.nl/courses/7181/files/2103028/download?wrap=1).
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Getting Started
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Follow these instructions to run the server and the client to play Collecto.
 
-## Add your files
+### Prerequisites
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+You should install JDK 11 for builiding this application.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.utwente.nl/s2596091/collectogame.git
-git branch -M main
-git push -uf origin main
-```
+To run the unit tests you should install a Java IDE (we are recommending Eclipse and IntelliJ) and JUnit 5.
 
-## Integrate with your tools
+To view the Collecto board game, your preferred console should be able to work with ANSI escape codes. In Eclipse Marketplace you can install ANSI Escape in Console.
 
-- [ ] [Set up project integrations](https://gitlab.utwente.nl/s2596091/collectogame/-/settings/integrations)
+Links for the downloads respectively:
+https://www.oracle.com/java/technologies/javase-jdk11-downloads.html
+https://www.eclipse.org/downloads OR https://www.jetbrains.com/idea/download
+https://junit.org/junit5
+(if using eclipse) https://marketplace.eclipse.org/content/ansi-escape-console
 
-## Collaborate with your team
+### Building and Running (for Eclipse)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+The zipped file CollectoYellow2.5, can be imported to Eclipse through File -> Import... -> Projects from Folder or Archive. Give the file location of the zipped file to the Import Source and press Finish.
 
-## Test and Deploy
+Expand the src folder of your newly imported project.
 
-Use the built-in continuous integration in GitLab.
+To start the server expand the ss.project.server package and right-click on the CollectoServer.java file, then select the Run As option and press Java Application.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+In the console you should type a valid port number (example: 4114, 8888).
 
-***
+Now to start the client expand the ss.project.client package and right-click on the ThreadedCollectoClient.java file, then select the Run As option and press Java Application.
 
-# Editing this README
+(Another way to run the server and the client is through the Jar files located in the Executable Collecto directory. To run those jar files open up a command line prompt which supports ANSI escape codes and go the location of the Executable Collecto. Then type `java -jar CollectoServer.java` to run the server and type `java -jar CollectoClient.java` to run the client.)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+If you are running the server on the same computer that you are running the client on, you can just leave the valid IP section empty and press enter. If the server is running on another computer you should enter that computer's IPv4 address to the valid IP section of the client and press enter.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Then in the valid port section you should enter the same port number that you decided on in the server application.
 
-## Name
-Choose a self-explaining name for your project.
+To play a game you should have two clients, for that you can simply repeat the last two steps.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Then for each client you should do a Hello handshake, this can be done by typing `HELLO` followed by `~` which is followed by a description for your client.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Now for each client you should also log in, this can be done by typing `LOGIN` followed by `~` which is followed by a <u>unique</u> name for your client. If you want to play as a simple AI, you should contain `AI` in your name (example: `KaganAI`), if you want to play as a smarter AI, you should contain `AI+` in your name (example: `AlexAI+`). 
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+After logging in you can queue for a game, this can be done by typing `QUEUE`. If you change your mind and want to exit the queue you can type `QUEUE` a second time. When two clients are queued and are waiting for a game, a new game will automatically start.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+The moves are made by typing `MOVE` followed by `~` followed by the move number (for a single move), or `MOVE` followed by `~` followed by the first move number, followed by `~`, followed by the second move number (for a double move). Which rows and columns will be moved according to the game rules are shown in the TUI with numbers around the board and arrows pointing to the direction of the move.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+If you struggle with finding a legal move, you can simply type `HINT` when it is your turn to play, and a legal move hint will be shown. You can do your move with that hint or discard it and pick another one.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+When the game is over, the reason and the winner will be shown to the console. To play another game you can simply queue again by typing `QUEUE`.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+A further note should be made that the CollectoServer can simultaneously run multiple games, meaning that you are not limited to two clients. To also see the clients that are logged in to the server you can type `LIST`.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+After you played your games, you can type `EXIT` as the client and the program will terminate.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Running the tests
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+To run the unit tests you need to have JUnit 5, for Eclipse you can simply right click on anyone of the Java files under the ss.project.test package and select Run As option and press JUnit Test.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+There are five tests that you can run named BoardTest, ComputerPlayerTest, HumanPlayerTest, ClientTest, and ServerTest. As the names suggest BoardTest is used to test the game logic, ComputerPlayerTest is used to test the AIs and strategies, HumanPlayerTest is used to test the player classes which are an important component of the game logic, ClientTest is used to test the client and some important methods inside, and ServerTest is used to test the server.
 
-## License
-For open source projects, say how it is licensed.
+## Images from the client
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+**Non-game commands**
+![Non-game commands](Images/readme1.PNG)
+
+**First view of the game**
+![First view of the game](Images/readme2.PNG)
+
+**Mid-game view of the game**
+![Mid-game view of the game](Images/readme3.PNG)
+
+**Gameover message**
+![Gameover message](Images/readme4.PNG)
+
+## Authors
+
+Alex Petrov and Kagan Gulsum.
+
+## Acknowledgments
+
+Special thanks to all of the teaching assitants and lecturers who taught, inspired, and helped us to make this project happen.

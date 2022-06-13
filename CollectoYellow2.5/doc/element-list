@@ -1,0 +1,10 @@
+ss.project
+ss.project.client
+ss.project.exceptions
+ss.project.gamelogic
+ss.project.players
+ss.project.protocol
+ss.project.server
+ss.project.strategy
+ss.project.test
+ss.utils
